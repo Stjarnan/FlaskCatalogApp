@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie Catalog</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="1072405718300-7kdr08dkvn4hkgceimh4c7p679rbsmol.apps.googleusercontent.com">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800|Permanent+Marker" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <a class="headerLink" href="{{ url_for('landing_page') }}"><h1>Catalog App</h1></a>
+        <div class="flexWrap">
+        <div id="UserStateDiv">
+            <a href="{{ url_for('user_page') }}">My Account</a>
+            {% if g.user.is_authenticated %}
+                <a class="signout" href="#" onclick="signOut();">Sign out</a>
+            {% endif %}
+            <div class="google">
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div>
+            <script>
+                function onSignIn(googleUser) {
+                    var id_token = googleUser.getAuthResponse().id_token;
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'http://localhost:8080/signin');
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.send('id_token=' + id_token);
+                }
+
+                function signOut() {
+                    var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signOut()
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'http://localhost:8080/signout');
+                    xhr.send();
+                    location.href ="{{ url_for('landing_page')}}"
+                }
+            </script>
+        </div>
+        </div>
+    </header>
+    <div class="wrapper">
+    <main>{% block content %}{% endblock %}</main>
+    {% block categoryNavigation %}
+        <nav id="categoryNavigation">
+            <h3>Browse movies by genre:</h3>
+            <ul>
+                {% for category in categories %}
+                    <li>
+                        <a href="{{ url_for('category_page', category=category[0] ) }}">
+                            {{ category[0] }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endblock %}
+    </div>
+</body>
+</html>

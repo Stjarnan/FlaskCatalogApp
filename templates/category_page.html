@@ -1,0 +1,17 @@
+{% extends "skeleton.html" %}
+{% block content %}
+    <h1>{{ category }}</h1>
+    <div class="landingPageContainer">
+    {% for movie in movies %}
+        <a href="{{ url_for('movie_page', movie_title=movie[0], movie_data=movie[2]) }}">
+            <div class="categoryMovie">
+                <img src="{{ movie[1] }}" alt="movie poster">
+                <span>{{ movie[0] }}</span>
+            </div>
+        </a>
+    {% endfor %}
+    </div>
+{% endblock %}
+{% block categoryNavigation %}
+    {{ super() }}
+{% endblock %}

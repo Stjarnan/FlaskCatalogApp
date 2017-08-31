@@ -1,0 +1,11 @@
+{% extends "skeleton.html" %}
+{% block content %}
+    <div class="movieSpecific">
+        <h1>{{ movie_data[0][0] }}</h1>
+        <p>{{ movie_data[0][2] }}</p>
+        <img src="{{ movie_data[0][1] }}" alt="movie poster">
+    </div>
+{% endblock %}
+{% block categoryNavigation %}
+    {{ super() }}
+{% endblock %}

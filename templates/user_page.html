@@ -1,0 +1,22 @@
+{% extends "skeleton.html" %}
+{% block content %}
+    <h1>Hi, {{ g.user.name }}!</h1>
+    <div class="userPanel">
+        <a href="{{ url_for('add') }}"}}>Add Movie</a>
+    </div>
+    <div class="userItems">
+        <h3>Here are your movies:</h3>
+        <ul>
+            {% for movie in user_items %}
+                <li>
+                    {{ movie[0] }}
+                    <a href="{{ url_for('update', movieid=movie[1]) }}"}}>Update</a>
+                    <a href="{{ url_for('delete', movieid=movie[1]) }}"}}>Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+{% block categoryNavigation %}
+    {{ super() }}
+{% endblock %}

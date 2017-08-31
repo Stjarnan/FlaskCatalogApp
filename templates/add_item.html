@@ -1,0 +1,22 @@
+{% extends "skeleton.html" %}
+{% block content %}
+    <form method="POST" action="" class="form">
+        {{ form.hidden_tag() }}
+        {% for field in form %}
+            <div class="field">
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <div class="notification error"> {{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+                {{ field(placeholder=field.label.text) }}
+            </div>
+        {% endfor %}
+        <div class="field">
+            <button type="submit" id="submit">Add</button>
+        </div>
+    </form>
+{% endblock %}
+{% block categoryNavigation %}
+    {{ super() }}
+{% endblock %}

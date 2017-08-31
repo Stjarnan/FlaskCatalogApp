@@ -1,0 +1,299 @@
+/*=================
+
+Base
+
+=====================*/
+
+html {
+    font-family: 'Open Sans', sans-serif;
+    color: #4d4d4d;
+    background-color: #FEFCFD;
+    min-height: 100vh;
+}
+
+body {
+    min-height: 100vh;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* ==================
+
+Header
+
+=====================*/
+
+header {
+    border-bottom: solid 1.5px lightgrey;
+}
+
+header h1 {
+    text-align: center;
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+header .headerLink {
+    text-decoration: none;
+    color: #41658A;
+    font-family: 'Permanent Marker', sans-serif;
+}
+
+#UserStateDiv a {
+    color: #AA5042;
+    font-weight: 800;
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.google {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* ======================
+
+Content Area
+
+========================*/
+
+main {
+    margin-top: 30px;
+}
+
+.recent {
+    margin: 0 auto 20px;
+    width: 66%;
+}
+
+.recent div {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.recent img,
+.categoryMovie img {
+    height: 268px;
+    margin: 0 auto;
+}
+
+.recent a {
+    text-decoration: none;
+    color: #4d4d4d;
+    font-weight: 800;
+}
+
+.recent p {
+    margin-top: 0;
+}
+
+main h1 {
+    text-align: center;
+    color: #41658A;
+}
+
+.categoryMovie {
+    margin-bottom: 20px;
+}
+
+.categoryMovie img {
+    display: block;
+}
+
+.categoryMovie span {
+    padding-top: 5px;
+    text-align: center;
+    width: 100%;
+    color: #4d4d4d;
+    font-weight: 800;
+    display: inline-block;
+}
+
+.movieSpecific p {
+    width: 95%;
+    margin: 0 auto;
+    padding-bottom: 15px;
+}
+
+.movieSpecific img {
+    margin: 0 auto;
+    display: block;
+}
+
+.userPanel a {
+    text-align: center;
+    color: #AA5042;
+    display: block;
+    font-weight: 800;
+}
+
+.userItems h3 {
+    text-align: center;
+}
+
+.userItems li {
+    list-style-type: square;
+    margin-bottom: 5px;
+}
+
+.userItems li a {
+    color: #AA5042;
+    font-weight: 800;
+}
+
+form .field {
+    width: 66%;
+    margin: 10px auto;
+}
+
+form .field button {
+    margin: 0 auto;
+    display: block;
+    color: #4d4d4d;
+    font-weight: 800;
+}
+
+.deleteForm p {
+    text-align: center;
+}
+
+.deleteForm a {
+    display: block;
+    text-align: center;
+    color: #AA5042;
+    font-weight: 800;
+}
+
+/* =======================
+
+Navigation
+
+*=========================*/
+
+#categoryNavigation {
+    text-align: center;
+}
+
+#categoryNavigation h3 {
+    color: #41658A;
+}
+
+#categoryNavigation ul {
+    padding-left: 0;
+}
+
+#categoryNavigation li {
+    list-style-type: none;
+    font-weight: 800;
+    padding: 10px 0;
+}
+
+#categoryNavigation li a {
+    color: #AA5042;
+}
+
+/* ======================
+
+Media Queries
+
+=========================*/
+
+@media screen and (min-width: 768px) {
+
+    header {
+        height: 24vh;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: space-around;
+        min-height: 75vh;
+    }
+
+    main,
+    #categoryNavigation {
+        display: inline-block;
+    }
+
+    main {
+        width: 66%;
+    }
+
+    #categoryNavigation {
+        width: 32%;
+        border-left: solid 2px lightgray;
+    }
+
+    .userItems ul {
+        width: 380px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .userItems li a {
+        margin: 0 10px;
+    }
+
+    form .field {
+        width: 200px;
+    }
+}
+
+
+@media screen and (min-width: 1024px) {
+
+    header {
+        height: 10vh;
+    }
+
+    .wrapper {
+        height: 90vh;
+    }
+
+    header h1 {
+        width: 60%;
+        display: inline-block;
+        font-size: 50px;
+    }
+
+    .flexWrap {
+        display: inline-block;
+        width: 39%;
+        max-width: 400px;
+    }
+
+    #UserStateDiv {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    #UserStateDiv a {
+        display: inline-block;
+    }
+
+    #UserStateDiv .google {
+        width: 200px;
+    }
+
+    .landingPageContainer {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    main .recent,
+    .categoryMovie {
+        display: inline-block;
+        width: 232px;
+        height: 400px;
+    }
+
+    .movieSpecific p {
+        width: 80%;
+    }
+
+}
