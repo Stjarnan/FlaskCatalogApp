@@ -215,9 +215,9 @@ def update(movieid):
     form = UpdateMovieForm()
     if form.validate_on_submit():
         db_insert('UPDATE movies SET movie = ?, poster = ?, description = ?' +
-                  ', categoryid = ? WHERE  movieid = ?',
+                  ', categoryid = ? WHERE  movieid = ? AND user = ?',
                   [(form.title.data, form.poster.data, form.description.data,
-                    form.category.data, form.movieid.data)])
+                    form.category.data, form.movieid.data, g.user.id)])
         return redirect(url_for('user_page'))
     return render_template('update_item.html',
                            form=form,
