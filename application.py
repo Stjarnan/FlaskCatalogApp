@@ -166,6 +166,8 @@ def signin():
 
         if not user_exists:
             db_insert('INSERT INTO users VALUES (?, ?)', [(username, userid)])
+            user_exists = db_get('SELECT id, name FROM users WHERE' +
+                             ' id = ? ', [userid])
 
         user = User(user_exists[0][0], user_exists[0][1])
         login_user(user)
