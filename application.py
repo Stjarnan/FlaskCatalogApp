@@ -214,11 +214,18 @@ def update(movieid):
     """ Formpage where users can fill a form to update movies """
     form = UpdateMovieForm()
     if form.validate_on_submit():
-        db_insert('UPDATE movies SET movie = ?, poster = ?, description = ?' +
-                  ', categoryid = ? WHERE  movieid = ? AND user = ?',
-                  [(form.title.data, form.poster.data, form.description.data,
-                    form.category.data, form.movieid.data, g.user.id)])
+        user_auth = db_get('SELECT user FROM movies WHERE user = ?' +
+                           ' AND movieid = ?',
+                           (g.user.id, form.movieid.data))
+        if user_auth[0][0] == g.user.id:
+            db_insert('UPDATE movies SET movie = ?, poster = ?, description' +
+                      ' = ?, categoryid = ? WHERE  movieid = ? AND user = ?',
+                      [(form.title.data, form.poster.data,
+                       form.description.data,
+                       form.category.data, form.movieid.data, g.user.id)])
+
         return redirect(url_for('user_page'))
+
     return render_template('update_item.html',
                            form=form,
                            movieid=movieid,
@@ -230,11 +237,13 @@ def update(movieid):
 def delete(movieid):
     """ Formpage where users can fill a form to remove movies """
     form = DeleteMovieForm()
-    print 'before'
     if form.validate_on_submit():
-        print 'after'
-        db_insert('DELETE FROM movies WHERE movieid = ?',
-                  [form.movieid.data])
+        user_auth = db_get('SELECT user FROM movies WHERE user = ?' +
+                           ' AND movieid = ?',
+                           (g.user.id, form.movieid.data))
+        if user_auth[0][0] == g.user.id:
+            db_insert('DELETE FROM movies WHERE movieid = ? AND user = ?',
+                      [(form.movieid.data, g.user.id)])
         return redirect(url_for('user_page'))
     return render_template('delete_item.html',
                            form=form,
